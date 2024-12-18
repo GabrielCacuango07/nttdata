@@ -1,0 +1,9 @@
+<div class="search-and-button-container">
+    <app-search (search)="handleSearch($event)"></app-search>
+    <app-primary-button 
+      (click)="addItem()"  
+      [enabled]="true"                
+      type="button">Agregar</app-primary-button> 
+
+    </div>
+    <app-table [headers]="tableHeaders" [data]="tableData"></app-table>

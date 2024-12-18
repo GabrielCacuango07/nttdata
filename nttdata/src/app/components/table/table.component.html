@@ -1,0 +1,28 @@
+<div class="table-container">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th *ngFor="let header of headers">
+            <span class="header-title">{{ header.title }}</span>
+            <div class="tooltip-container" *ngIf="header.icon">
+              <img [src]="header.icon" alt="Ícono" class="header-icon" />
+              
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let key of getKeys(row)">
+            <ng-container *ngIf="key === 'log'; else text">
+              <img [src]="row[key]" alt="Log" class="log-image" />
+            </ng-container>
+            <ng-template #text>
+              {{ row[key] }}
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

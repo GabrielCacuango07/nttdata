@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    font-family: "prelo-book", sans-serif;
+    font-size: 1.6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%; /* Asegura que no exceda el ancho */
+    box-sizing: border-box; /* Incluye paddings y bordes en el cálculo del ancho */
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-top: 80px; 
+    font-family: Arial, sans-serif;
+    width: 100%; /* Ajusta el contenido al ancho disponible */
+    box-sizing: border-box; /* Considera paddings dentro del ancho */
+  }
+

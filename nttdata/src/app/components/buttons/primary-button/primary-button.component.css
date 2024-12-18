@@ -1,0 +1,13 @@
+.primary-button {
+    background-color: var(--primary-yellow);  /* Color azul primario */
+    color: var(--primary-blue);               /* Texto blanco */
+    border: none;               /* Sin borde */
+    padding: 10px 20px;         /* Espaciado interno */
+    font-size: 16px;            /* Tamaño de fuente */
+    border-radius: 4px;         /* Bordes redondeados */
+    cursor: pointer;  
+    font-weight: bold;       
+    transition: background-color 0.3s ease; /* Transición suave */
+  }
+  
+  

@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --primary-yellow: #FFDD00;
+    --secundary-yellow: #ffdd00ce;
+    --primary-blue: #10255E;
+    --primary-grey: #A4A4A6;
+    --primary-white: #FFFFFF;
+    --primary-black: #000000;
+    --light-green-background: rgba(237,246,244,1);
+    --light-gray-background: #EFEEEE;
+    --cancel-color: red;
+    --secondary--Green: #4BA587;
+    --secondaryGreenDark: #478C74;
+    --secondaryGreenLight: #6ABBA0;
+    --dividers: #CDCCCC;
+    --grayTitleText: #A8A8A8;
+    --grayDisabled: rgba(227,227,227,1);
+    --transparent:rgba(227,227,227,0.5);
+  }

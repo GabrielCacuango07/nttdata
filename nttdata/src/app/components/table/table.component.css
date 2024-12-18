@@ -1,0 +1,75 @@
+.custom-table {
+    width: 80%;               /* La tabla ocupa el 80% del ancho del contenedor */
+  border-collapse: collapse; /* Elimina los espacios entre las celdas */
+  margin: 0 auto;           /* Asegura q
+  }
+
+  .table-container {
+    display: flex;            /* Usa Flexbox para centrar el contenido */
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente (opcional) */
+  width: 100%;              /* Contenedor ocupa todo el ancho */
+  padding: 2rem 0;          /* Espaciado superior e inferior */
+  box-sizing: border-box;   /* Incluye el padding en el ancho total */
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Fondo gris claro */
+    font-weight: bold;        /* Negrita para el texto */
+    text-align: left;         /* Alineación a la izquierda */
+    padding: 0.8rem;          /* Espaciado interno */
+    border-bottom: 2px solid #ddd; /* Línea gruesa debajo de las cabeceras */
+  }
+  
+  th .header-title {
+    margin-right: 5px; /* Espacio entre el texto y el ícono */
+  }
+  
+  th .header-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  td {
+    padding: 0.8rem;          /* Espaciado interno */
+    text-align: left;         /* Alineación a la izquierda */
+    border-bottom: 1px solid #ddd; /* Línea delgada debajo de cada fila */
+  }
+  
+  .log-image {
+    width:  40px; 
+    height: 40px; 
+    border-radius: 50%; 
+  }
+  th, td {
+    padding: 0.5rem 1rem; /* Controla el espacio dentro de las celdas */
+    text-align: left;
+  }
+
+
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    background-color: #333; /* Fondo oscuro */
+    color: #fff;           /* Texto blanco */
+    text-align: center;
+    border-radius: 5px;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 100%; /* Aparece encima del ícono */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap; /* Evita que el texto haga saltos de línea */
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s; /* Suaviza la aparición */
+  }
+  
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
