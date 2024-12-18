@@ -28,14 +28,14 @@ export class WelcomeComponent {
     }
   
     addItem() {
-      console.log("presionado");  // Verifica que se imprima en la consola
-      this.router.navigate(['/new-product']);  // Esto redirige a la ruta /new-product
+      console.log("presionado"); 
+      this.router.navigate(['/new-product']); 
     }
   
   
     handleSearch(term: string): void {
       console.log('Término de búsqueda:', term);
-      // Implementa aquí la lógica para filtrar datos o realizar la búsqueda
+     
     }
 
 }

@@ -7,11 +7,12 @@ import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { SearchComponent } from './components/common/search/search.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from './components/buttons/primary-button/primary-button.component';
 import { AddProductComponent } from './screens/products/add-product/add-product.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { TextInputComponent } from './components/inputs/text-input/text-input.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,14 @@ import { AppRoutingModule } from './app-routing.module';
     SearchComponent,
     PrimaryButtonComponent,
     AddProductComponent,
+    TextInputComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

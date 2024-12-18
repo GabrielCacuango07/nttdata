@@ -7,18 +7,18 @@
   
   .search-input {
     width: 100%;
-    max-width: 250px; /* Ancho máximo del cuadro de búsqueda */
+    max-width: 250px; 
     padding: 10px;
-    border: 0.5px solid #ccc; /* Borde gris claro */
-    border-radius: 7px; /* Bordes redondeados */
+    border: 0.5px solid #ccc; 
+    border-radius: 7px; 
     font-size: 14px;
-    outline: none; /* Elimina el borde azul al hacer clic */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    transition: border-color 0.3s ease; /* Transición suave en el enfoque */
+    outline: none; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.3s ease; 
   }
   
   .search-input:focus {
-    border-color: var(--primary-blue); /* Cambia el color del borde al enfocarse */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+    border-color: var(--primary-blue); 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
   }
   

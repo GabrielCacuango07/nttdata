@@ -1,1 +1,64 @@
-<p>add-product works!</p>
+<div class="form-container">
+    <h2 class="form-title">Formulario de Registro</h2>
+    <hr class="form-divider" />
+  
+    <form class="form-fields" (submit)="add()" [formGroup]="productForm">
+      <!-- Fila 1 -->
+      <div class="form-row">
+        <div class="form-column">
+            <label class="label-left">Id</label>
+             <app-text-input label="Id" appearance="outline" [filled]="true" [control]="productForm.get('id')">
+                <input #epmInput type="text" placeholder='Ingrese un id' formControlName="id" required/>
+            </app-text-input> 
+        </div>
+        <div class="form-column">
+            <label class="label-left">Nombre</label>
+             <app-text-input label="Name" appearance="outline" [filled]="true" [control]="productForm.get('name')">
+                <input #epmInput type="text" placeholder="Ingrese nombre" formControlName="name" required/>
+            </app-text-input> 
+        </div>
+      </div>
+  
+      <!-- Fila 2 -->
+      <div class="form-row">
+        <div class="form-column">
+            <label class="label-left">Descripcion</label>
+            <app-text-input label="description" appearance="outline" [filled]="true" [control]="productForm.get('description')">
+                <input #epmInput type="text" placeholder="Descripcion" formControlName="description" required/>
+            </app-text-input> 
+        </div>
+        <div class="form-column">
+            <label class="label-left">Logo</label>
+            <app-text-input label="logo" appearance="outline" [filled]="true" [control]="productForm.get('logo')">
+                <input #epmInput type="text" placeholder="logo" formControlName="logo" required/>
+            </app-text-input> 
+        </div>
+      </div>
+  
+      <!-- Fila 3 -->
+      <div class="form-row">
+        <div class="form-column">
+            <label class="label-left">Fecha liberacion</label>
+             <app-text-input label="releseDate" appearance="outline" [filled]="true" [control]="productForm.get('releseDate')">
+                <input #epmInput type="text" placeholder="releseDate" formControlName="releseDate" required/>
+            </app-text-input> 
+        </div>
+        <div class="form-column">
+            <label class="label-left">Fecha revision</label>
+            <app-text-input label="checkDate" appearance="outline" [filled]="true" [control]="productForm.get('checkDate')">
+                <input #epmInput type="text" placeholder="checkDate" formControlName="checkDate" required/>
+            </app-text-input> 
+        </div>
+      </div>
+  
+      <!-- Botones -->
+      <div class="form-buttons">
+          <button type="button" class="btn">Cancelar</button>
+          <app-primary-button 
+          type="submit"  
+          [enabled]="true"                
+          type="button">Agregar</app-primary-button> 
+      </div>
+    </form>
+  </div>
+  

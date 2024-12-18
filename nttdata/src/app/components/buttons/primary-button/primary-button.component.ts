@@ -7,18 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./primary-button.component.css']
 })
 export class PrimaryButtonComponent {
-  @Input() enabled: boolean = true;           // Determina si el botón está habilitado o no
-  @Input() color: string = '';                // Color del botón (opcional)
-  @Input() navigateTo: any | string | undefined;     // Ruta a la que redirige el botón
+  @Input() enabled: boolean = true;           
+  @Input() color: string = '';                
+  @Input() navigateTo: any | string | undefined;     
   @Input() type: string = 'button'; 
   
   
-  constructor(private router: Router) {}  // Inyectar Router
+  constructor(private router: Router) {}  
 
   onClick() {
     console.log("navegaaa")
     if (this.navigateTo && this.enabled) {
-      this.router.navigate(this.navigateTo);  // Navegar programáticamente
+      this.router.navigate(this.navigateTo);  
     }
   }
 }

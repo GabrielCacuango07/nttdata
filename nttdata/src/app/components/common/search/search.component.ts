@@ -6,11 +6,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  @Output() search = new EventEmitter<string>(); // Evento para enviar el término de búsqueda
-  searchTerm: string = ''; // Almacena el texto ingresado
+  @Output() search = new EventEmitter<string>(); 
+  searchTerm: string = ''; 
 
   onSearch(): void {
-    this.search.emit(this.searchTerm); // Emite el término de búsqueda
+    this.search.emit(this.searchTerm); 
   }
 
 }
