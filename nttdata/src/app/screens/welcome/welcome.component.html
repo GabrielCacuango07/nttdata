@@ -2,8 +2,15 @@
     <app-search (search)="handleSearch($event)"></app-search>
     <app-primary-button 
       (click)="addItem()"  
-      [enabled]="true"                
+      [enabled]="true" 
+      color="primary"               
       type="button">Agregar</app-primary-button> 
 
     </div>
-    <app-table [headers]="tableHeaders" [data]="tableData"></app-table>
+    <div *ngIf="tableData && tableData.length > 0; else noResults">
+      <app-table [headers]="tableHeaders" [data]="tableData"  [canClickRow]="true"  [clickFn]="onRowClick.bind(this)"></app-table>
+    </div>
+    
+    <ng-template #noResults>
+      <p>No hay resultados</p>
+    </ng-template>

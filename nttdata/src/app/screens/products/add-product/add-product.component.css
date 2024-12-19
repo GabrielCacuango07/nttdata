@@ -8,6 +8,7 @@
     text-align: center;
     font-size: 24px;
     margin-bottom: 10px;
+    color: var(--primary-blue);
   }
   
   .form-divider {
@@ -31,6 +32,7 @@
     display: flex;
     flex-direction: column;
     width: 48%;
+    color: var(--primary-blue);
   }
   
   
@@ -76,4 +78,6 @@
   .form-buttons .btn:hover {
     background-color: var(--primary-blue);
   }
-  
+  .form-group{
+    width: 50%
+  }

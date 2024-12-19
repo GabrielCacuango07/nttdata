@@ -1,0 +1,25 @@
+<div>
+    <label *ngIf="label" class="required-field-marker">
+      {{ label }}
+      <small
+        *ngIf="control?.errors?.required"
+        class="required-field-marker error-label"
+        style="color: rgb(255, 10, 10); font-size: 1.2em;"
+        >*</small
+      >
+    </label>
+  
+    <input
+      type="date"
+      class="form-control"
+      [disabled]="!edit"
+      [value]="value"
+      (input)="handleInputChange($event)"
+    />
+  
+    <!-- Mostrar errores -->
+    <div class="error-label" *ngIf="error.hasError && control.touched">
+      <small>{{error.message }}</small>
+  </div>
+  </div>
+  

@@ -1,13 +1,13 @@
-<div class="form-container">
+<div class="form-container" *ngIf="!loading">
     <h2 class="form-title">Formulario de Registro</h2>
     <hr class="form-divider" />
   
-    <form class="form-fields" (submit)="add()" [formGroup]="productForm">
+    <form class="form-fields"  [formGroup]="productForm">
       <!-- Fila 1 -->
       <div class="form-row">
         <div class="form-column">
             <label class="label-left">Id</label>
-             <app-text-input label="Id" appearance="outline" [filled]="true" [control]="productForm.get('id')">
+             <app-text-input [edit]="!edit" label="Id" appearance="outline" [filled]="true" [control]="productForm.get('id')">
                 <input #epmInput type="text" placeholder='Ingrese un id' formControlName="id" required/>
             </app-text-input> 
         </div>
@@ -38,27 +38,47 @@
       <!-- Fila 3 -->
       <div class="form-row">
         <div class="form-column">
-            <label class="label-left">Fecha liberacion</label>
-             <app-text-input label="releseDate" appearance="outline" [filled]="true" [control]="productForm.get('releseDate')">
-                <input #epmInput type="text" placeholder="releseDate" formControlName="releseDate" required/>
-            </app-text-input> 
+            <label class="label-left">Fecha liberación</label>
+            <div class="form-group">
+                <app-date-input
+                style="width: 300px;"
+                #dateInput  
+                type="date" 
+                formControlName="releaseDate" 
+                [edit]="false"
+                [control]="productForm.get('releaseDate')"
+                class="form-control"></app-date-input>
+                     
+              </div>
         </div>
         <div class="form-column">
             <label class="label-left">Fecha revision</label>
-            <app-text-input label="checkDate" appearance="outline" [filled]="true" [control]="productForm.get('checkDate')">
-                <input #epmInput type="text" placeholder="checkDate" formControlName="checkDate" required/>
-            </app-text-input> 
+            <div class="form-group" style="width: 50%">
+                <app-date-input
+                #dateInput  
+                type="date" 
+                formControlName="checkDate" 
+                [edit]="false"
+                [control]="productForm.get('checkDate')"
+                class="form-control"></app-date-input>
+                     
+              </div>
+            
         </div>
       </div>
   
       <!-- Botones -->
       <div class="form-buttons">
-          <button type="button" class="btn">Cancelar</button>
-          <app-primary-button 
-          type="submit"  
-          [enabled]="true"                
-          type="button">Agregar</app-primary-button> 
+        <app-primary-button [enabled]="true" color="cancel" type="button" class="mr-1">Cancelar</app-primary-button>
+        
+        <app-primary-button *ngIf="edit" color="primary"  type="submit" [enabled]="true" type="button"  (click)="saveProduct()">Agregar</app-primary-button>
+        <app-primary-button *ngIf="!edit" color="primary"  type="submit" [enabled]="true" type="button"  (click)="updateProduct()">Actualizar</app-primary-button>
       </div>
     </form>
+  </div>
+  
+  <div class="form-container" *ngIf="loading">
+    <app-spinner [isLoading]="loading"></app-spinner>
+    
   </div>
   

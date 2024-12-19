@@ -13,6 +13,10 @@ import { AddProductComponent } from './screens/products/add-product/add-product.
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { TextInputComponent } from './components/inputs/text-input/text-input.component';
+import { DateInputComponent } from './components/inputs/date-input/date-input.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './components/common/spiner/spiner.component';
+import { NotificationComponent } from './components/notification/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +29,17 @@ import { TextInputComponent } from './components/inputs/text-input/text-input.co
     PrimaryButtonComponent,
     AddProductComponent,
     TextInputComponent,
-  ],
+    DateInputComponent,
+    SpinnerComponent,
+    NotificationComponent  ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

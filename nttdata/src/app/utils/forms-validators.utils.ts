@@ -5,7 +5,29 @@ import { Observable, catchError, map, of,tap } from "rxjs";
 
 
 
-export const EPMValidators: any = {
+export const NttValidators: any = {
+
+  minDateValidator(minDate: Date): (control: AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      
+      console.log("🚀 ~ return ~ control:", control)
+      const inputDate = new Date(control.value);
+      const today = new Date(minDate);
+  
+     
+      if (!control.value) {
+        return null;
+      }
+  
+      console.log("🚀 ~ return ~ inputDate:", inputDate)
+      console.log("🚀 ~ return ~ today:", today)
+      
+      if (inputDate < today) {
+        return { minDate: true }
+      }
+      return null;
+    };
+  },
 
   names(): ValidatorFn {
    return (control: AbstractControl): ValidationErrors | null => {
@@ -423,6 +445,7 @@ export function parseError(error: any): string{
   if(error.hasOwnProperty('noValidPass')) return `La contraseña no cumple los parámetros`;
   if(error.hasOwnProperty('dniNotFound')) return `El DNI ingresado ya existe`;
   if(error.hasOwnProperty('invalidCI')) return `El DNI ingresado no es valido`;
+  if(error.hasOwnProperty('minDate')) return `Ingrese una fecha mayor  a la actual`;
   return 'Por favor, ingrese un valor válido';
 }
 

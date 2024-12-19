@@ -1,13 +1,29 @@
-.primary-button {
-    background-color: var(--primary-yellow);  
-    color: var(--primary-blue);               
-    border: none;               
-    padding: 10px 20px;         
-    font-size: 16px;            
-    border-radius: 4px;         
-    cursor: pointer;  
-    font-weight: bold;       
-    transition: background-color 0.3s ease; 
-  }
+
+button{
+  width: max-content;
+  display: block;
+  border-radius: 5px;
+  border-color: none;
+  height: 35px;
+  width: 125px;
+  font-family: "prelo-book", sans-serif ;
+  font-weight: bold;
+  border: none
+  
+
+}
+button.primary{
+    background-color: var(--primary-yellow);
+    color: var(--primary-blue);
+}
+.fc .fc-button-primary:hover,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+  button.cancel{
+    background-color: var(--primary-grey);
+    color: var(--primary-blue);
+}
   
   

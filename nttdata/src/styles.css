@@ -17,3 +17,70 @@
     --grayDisabled: rgba(227,227,227,1);
     --transparent:rgba(227,227,227,0.5);
   }
+  .ml-1{
+    margin-left: 1.6rem !important;
+  }
+  .ml-2{
+    margin-left: 2.4rem !important;
+  }
+  .ml-3{
+    margin-left: 3.2rem !important;
+  }
+  .ml-4{
+    margin-left: 110.8rem !important;
+  }
+  
+  .mr-1{
+    margin-right: 1.6rem !important;
+  }
+  .mr-2{
+    margin-right: 2.4rem !important;
+  }
+  .mr-3{
+    margin-right: 3.2rem !important;
+  }
+  .mr-4{
+    margin-right: 10.8rem !important;
+  }
+  .no-margin{
+    margin: 0px !important;
+  }
+  .no-visible{
+    display: none !important;
+  }
+  
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente opcional */
+    z-index: 9999; /* Asegúrate de que el spinner esté encima de otros elementos */
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary-yellow);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .spinner.hidden {
+    display: none;
+  }
