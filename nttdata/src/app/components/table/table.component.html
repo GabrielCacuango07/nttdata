@@ -11,11 +11,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of displayedData" (click)="handleRowClick(row)" >
+      <tr *ngFor="let row of displayedData" (click)="handleRowClick(row)">
         <td *ngFor="let key of getKeys(row)">
-          <ng-container *ngIf="key === 'log'; else text">
-            <img [src]="row[key]" alt="Log" class="log-image" />
+          <ng-container *ngIf="key === 'logo'; else text">
+            <img [src]="'../../../assets/icons/' + row[key]"  
+                 alt="Logo" 
+                 class="log-image" 
+                 (error)="onImageError($event, row)" 
+                 [attr.src]="row['imageSrc'] || '../../../assets/icons/icono_banco.png'" /> <!-- Imagen por defecto -->
           </ng-container>
+          
           <ng-template #text>
             {{ row[key] }}
           </ng-template>
@@ -23,11 +28,10 @@
       </tr>
     </tbody>
   </table>
-
-  
 </div>
+
 <div class="pagination-controls">
   <select id="itemsPerPage" (change)="onItemsPerPageChange($event)">
-    <option *ngFor="let option of [20,10,5]" [value]="option">{{ option }}</option>
+    <option *ngFor="let option of [20, 10, 5]" [value]="option">{{ option }}</option>
   </select>
 </div>

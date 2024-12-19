@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class WelcomeComponent {
     title = 'nttdata';
+    filteredData: Product[] = [];
     tableHeaders = [
       { title: 'Logo',},
       { title: 'Nombre del producto' },
@@ -18,7 +19,7 @@ export class WelcomeComponent {
     { title: 'Fecha de revisión', tooltip: 'Ordenar por edad' },
     ];
   
-    tableData = [];
+    tableData: Product[] = [];
   
     constructor(
       private router: Router,
@@ -37,44 +38,68 @@ export class WelcomeComponent {
       console.log("presionado"); 
       this.router.navigate(['/new-product']); 
     }
-  
-  
-    handleSearch(term: string): void {
-      console.log('Término de búsqueda:', term);
-     
-    }
     onRowClick(row: any): void {
       console.log('Fila clickeada:', row);
       this.router.navigate(['/new-product'], { state: { element: row } });
     }
+    
     private fetchProducts(consentObservable: Observable<any>) {
       consentObservable.subscribe({
         next: (resp: any) => {
           console.log("🚀 ~ WelcomeComponent ~ fetchProducts ~ resp:", resp);
       
           if (resp.data) {
-              console.log("🚀 ~ WelcomeComponent ~ fetchProducts ~ resp.data:", resp.data)
-              if (Array.isArray(resp.data) && resp.data.length > 0) {
-                  this.tableData = resp.data.map((product: any) => {
-                      return {
-                        logo: product.logo,  
-                        name: product.name,  
-                        description: product.description,  
-                        releaseDate: product.date_release,  
-                        checkDate: product.date_revision,
-                        id:product.id
-                      };
-                  });
-              } else {
-                  console.warn("La data está vacía");
-                  this.tableData = []; 
-              }
+            console.log("🚀 ~ WelcomeComponent ~ fetchProducts ~ resp.data:", resp.data);
+            if (Array.isArray(resp.data) && resp.data.length > 0) {
+              this.tableData = resp.data.map((product: any): Product => {
+                return {
+                  logo: product.logo,
+                  name: product.name,
+                  description: product.description,
+                  releaseDate: product.date_release,
+                  checkDate: product.date_revision,
+                  id: product.id,
+                };
+              });
+              this.filteredData = [...this.tableData];
+            } else {
+              console.warn("La data está vacía");
+              this.tableData = [];
+              this.filteredData = [];
+            }
           } else {
-              console.error("Error en la respuesta del servidor:", resp?.message || "Respuesta no válida");
-              this.tableData = []; 
+            console.error("Error en la respuesta del servidor:", resp?.message || "Respuesta no válida");
+            this.tableData = [];
+            this.filteredData = [];
           }
-      }
+        },
       });
-  }
+    }
 
+    handleSearch(term: string): void {
+      console.log('Término de búsqueda:', term);
+    
+      if (term.trim() === '') {
+        this.filteredData = [...this.tableData];
+      } else {
+        const lowerCaseTerm = term.toLowerCase();
+        this.filteredData = this.tableData.filter(
+          (product: Product) =>
+            product.name.toLowerCase().includes(lowerCaseTerm) ||
+            product.description.toLowerCase().includes(lowerCaseTerm)
+        );
+      }
+    }
+    
+
+}
+
+
+interface Product {
+  logo: string;
+  name: string;
+  description: string;
+  releaseDate: string;
+  checkDate: string;
+  id: string;
 }

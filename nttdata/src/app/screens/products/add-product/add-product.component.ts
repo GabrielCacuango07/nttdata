@@ -17,15 +17,21 @@ export class AddProductComponent {
   element: any = {};
   loading: boolean = false;
   edit:    boolean=true;
+  isDialogVisible: boolean = false;
 
   productForm: FormGroup = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
+    id: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(3), Validators.maxLength(10)],
+      asyncValidators: [NttValidators.idExist(this.productService)],
+      updateOn: 'blur', 
+    }),
+    name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
     description: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
     logo: new FormControl('', [Validators.required]),
-    releaseDate: new FormControl('', [Validators.required]),
+    releaseDate: new FormControl('', [Validators.required,NttValidators.minDateValidator(new Date())]),
     checkDate: new FormControl('', [Validators.required, NttValidators.minDateValidator(new Date())]),
   });
+  
 
   constructor(
     private notificacionService: NotificacionService,
@@ -37,6 +43,7 @@ export class AddProductComponent {
     console.log('elemento recibido:', this.element);
 
     if (this.element != null) {
+      this.productForm.get('id')?.disable();
       this.edit = false
       this.loading = true;
       this.productService.checkProduct(this.element.id).subscribe({
@@ -67,12 +74,21 @@ export class AddProductComponent {
   }
 
   ngOnInit() {
-   
+    this.productForm.get('checkDate')?.disable();
     this.notificationSubscription = this.notificacionService.notifications$.subscribe(
       (message: string) => {
-        //alert(message); 
+        // alert(message); 
       }
     );
+  
+    this.productForm.get('releaseDate')?.valueChanges.subscribe((releaseDate: string) => {
+      if (releaseDate) {
+        const newCheckDate = new Date(releaseDate);
+        newCheckDate.setFullYear(newCheckDate.getFullYear() + 1);       
+        const isoDateString = newCheckDate.toISOString().split('T')[0]; 
+        this.productForm.get('checkDate')?.setValue(isoDateString);
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -86,19 +102,25 @@ export class AddProductComponent {
     console.log("Se presiona el botón de guardar");
     this.loading = true;
     if (!this.productForm.valid) {
+      this.markAllAsTouched();
       this.notificacionService.showNotification('Producto no válido. Revise los campos.');
       this.loading = false;
       return;
     }
 
-    const data = this.productForm.value;
+    const data = this.prepareData(this.productForm.value);
+    console.log("🚀 ~ AddProductComponent ~ saveProduct ~ data:", data)
 
     this.productService.saveProduct(data).subscribe({
       next: (response: any) => {
-        if (response.correct) {
+        console.log("🚀 ~ AddProductComponent ~ this.productService.saveProduct ~ response:", response)
+        if (response.message == "Product added successfully") {
           this.notificacionService.showNotification('Producto guardado correctamente');
+          this.router.navigate(['/']);  
+
         } else {
           this.notificacionService.showNotification('Error al actualizar el producto');
+          console.log(response,"Error al cargar el registro");
         }
         this.loading = false;
       },
@@ -115,7 +137,6 @@ export class AddProductComponent {
       next: (response: any) => {
         console.log("🚀 ~ AddProductComponent ~ this.productService.updateProduct ~ response:", response.message)
         if (response.message =='Product updated successfully') {
-          console.log("heeeeee")
           this.notificacionService.showNotification('Producto guardado correctamente');
           this.router.navigate(['/']);          
         } else {
@@ -129,17 +150,73 @@ export class AddProductComponent {
         this.loading = false;
       }
     });
-    console.log("updateProduct")
   }
 
+  clearForm() {
+    console.log("🚀 ~ AddProductComponent ~ clearForm ~ this.edit:", this.edit)
+    if (!this.edit) {
+      this.productForm.patchValue({
+        name: '',
+        description: '',
+        logo: '',
+        releaseDate: '',
+        checkDate: ''
+      });
+    } else {
+      this.productForm.reset();
+    }
+  }
+
+  openDialog() {
+    this.isDialogVisible = true;
+  }
+  
+  closeDialog() {
+    this.isDialogVisible = false;
+  }
+  
+  onConfirm() {
+    console.log("Acción confirmada");
+    let data  = this.productForm.value.id
+    console.log("🚀 ~ AddProductComponent ~ onConfirm ~ data:", data)
+    this.productService.deleteProduct(data).subscribe({
+      next: (response: any) => {
+        console.log("🚀 ~ AddProductComponent ~ this.productService.deleteProduct ~ response:", response)
+        if (response.message =='Product removed successfully') {
+          this.notificacionService.showNotification('Producto eliminado correctamente');
+          this.router.navigate(['/']);          
+        } else {
+          this.notificacionService.showNotification('Error al eliminar el producto');
+        }
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error("Error al guardar el producto:", err);
+        this.notificacionService.showNotification('Error al guardar el producto');
+        this.loading = false;
+      }
+    });
+
+    this.closeDialog();
+  }
+  markAllAsTouched() {
+    Object.keys(this.productForm.controls).forEach((field) => {
+      const control = this.productForm.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+  }
   prepareData(data:any){
+    const newCheckDate = new Date(data.releaseDate);
+        newCheckDate.setFullYear(newCheckDate.getFullYear() + 1);       
+        const isoDateString = newCheckDate.toISOString().split('T')[0]; 
+        this.productForm.get('checkDate')?.setValue(isoDateString);
     let dataUpdate = {
       id:data.id,
       name: data.name,
       description: data.description,
       logo: data.logo,
       date_release: data.releaseDate,
-      date_revision: data.checkDate
+      date_revision: isoDateString
     }
     return dataUpdate
   }

@@ -81,3 +81,19 @@
   .form-group{
     width: 50%
   }
+
+  .invalid input {
+    border: 1px solid red;
+  }
+  .error-message {
+    color: red;
+    font-size: 12px;
+  }
+
+  .invalid app-date-input {
+    
+    border-radius: 4px;
+  }
+  
+
+  

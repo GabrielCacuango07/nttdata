@@ -17,6 +17,7 @@ import { DateInputComponent } from './components/inputs/date-input/date-input.co
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/common/spiner/spiner.component';
 import { NotificationComponent } from './components/notification/notification/notification.component';
+import { DialogsComponent } from './components/notification/dialogs/dialogs.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NotificationComponent } from './components/notification/notification/no
     TextInputComponent,
     DateInputComponent,
     SpinnerComponent,
-    NotificationComponent  ],
+    NotificationComponent,
+    DialogsComponent  ],
   imports: [
     BrowserModule,
     FormsModule,

@@ -1,0 +1,1 @@
+setupFilesAfterEnv: ['./setup-jest.ts']

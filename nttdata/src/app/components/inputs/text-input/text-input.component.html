@@ -1,13 +1,11 @@
-<div  >
+<div>
     <label *ngIf="label" class="required-field-marker"> 
-        
-        {{label }} 
-        
-        <small *ngIf="control?.errors?.required" class="required-field-marker error-label" style="color: rgb(255, 10, 10); font-size: 1.2em;">*</small>
+        {{ label }}
     </label>
     
     <ng-content></ng-content>
-    <div class="error-label" *ngIf="error.hasError && control.touched">
-        <small>{{error.message }}</small>
+        <div class="error-label" [ngClass]="{ 'show-error': error.hasError && control.touched }">
+        <small>{{ error.message }}</small>
     </div>
-</div>
+  </div>
+  

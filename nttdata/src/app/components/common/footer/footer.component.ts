@@ -5,6 +5,15 @@ import { Component } from '@angular/core';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
+
 export class FooterComponent {
+  
+  public year: number=2024 ;
+
+    
+    constructor() {
+      const fecha = new Date();
+      this.year = fecha.getFullYear(); 
+    }  
 
 }

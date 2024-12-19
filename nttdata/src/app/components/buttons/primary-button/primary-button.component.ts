@@ -13,7 +13,9 @@ export class PrimaryButtonComponent {
   @Input() type: string = 'button'; 
   
   
-  constructor(private router: Router) {}  
+  constructor(private router: Router) {
+    
+  }  
 
   onClick() {
     console.log("navegaaa")

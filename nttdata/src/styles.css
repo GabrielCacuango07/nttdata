@@ -8,7 +8,8 @@
     --primary-black: #000000;
     --light-green-background: rgba(237,246,244,1);
     --light-gray-background: #EFEEEE;
-    --cancel-color: red;
+    --cancel-color: rgb(223, 77, 74);
+    --secondary-cancel-color: rgb(222, 43, 40);
     --secondary--Green: #4BA587;
     --secondaryGreenDark: #478C74;
     --secondaryGreenLight: #6ABBA0;

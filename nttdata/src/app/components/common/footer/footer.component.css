@@ -1,11 +1,14 @@
 .custom-footer {
-    background-color: #333;
-    color: white;
+    background-color: #fcfcfc;
+    color: var(--primary-blue);
     text-align: center;
     padding: 1rem;
     position: relative;
     bottom: 0;
     width: 100%;
+    font-family: "prelo-book", sans-serif;
+    font-size: 1.6rem;
+    -webkit-font-smoothing: antialiased;
   }
   
   .custom-footer p {

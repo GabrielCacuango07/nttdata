@@ -1,80 +1,105 @@
+
 <div class="form-container" *ngIf="!loading">
+ 
     <h2 class="form-title">Formulario de Registro</h2>
     <hr class="form-divider" />
-  
-    <form class="form-fields"  [formGroup]="productForm">
+    <form class="form-fields" [formGroup]="productForm">
       <!-- Fila 1 -->
       <div class="form-row">
-        <div class="form-column">
-            <label class="label-left">Id</label>
-             <app-text-input [edit]="!edit" label="Id" appearance="outline" [filled]="true" [control]="productForm.get('id')">
-                <input #epmInput type="text" placeholder='Ingrese un id' formControlName="id" required/>
-            </app-text-input> 
+        <div class="form-column" [ngClass]="{'invalid': productForm.get('id')?.invalid && productForm.get('id')?.touched}">
+          <label class="label-left">Id</label>
+          <app-text-input [edit]="!edit" label="Id" appearance="outline" [filled]="true" [control]="productForm.get('id')">
+            <input #epmInput type="text" placeholder="Ingrese un id" formControlName="id" required />
+          </app-text-input>
+          <small *ngIf="productForm.get('id')?.invalid && productForm.get('id')?.touched" class="error-message">
+          </small>
         </div>
-        <div class="form-column">
-            <label class="label-left">Nombre</label>
-             <app-text-input label="Name" appearance="outline" [filled]="true" [control]="productForm.get('name')">
-                <input #epmInput type="text" placeholder="Ingrese nombre" formControlName="name" required/>
-            </app-text-input> 
+        <div class="form-column" [ngClass]="{'invalid': productForm.get('name')?.invalid && productForm.get('name')?.touched}">
+          <label class="label-left">Nombre</label>
+          <app-text-input label="Name" appearance="outline" [filled]="true" [control]="productForm.get('name')">
+            <input #epmInput type="text" placeholder="Ingrese nombre" formControlName="name" required />
+          </app-text-input>
+          <small *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="error-message">
+          </small>
         </div>
       </div>
-  
+    
       <!-- Fila 2 -->
       <div class="form-row">
-        <div class="form-column">
-            <label class="label-left">Descripcion</label>
-            <app-text-input label="description" appearance="outline" [filled]="true" [control]="productForm.get('description')">
-                <input #epmInput type="text" placeholder="Descripcion" formControlName="description" required/>
-            </app-text-input> 
+        <div class="form-column" [ngClass]="{'invalid': productForm.get('description')?.invalid && productForm.get('description')?.touched}">
+          <label class="label-left">Descripción</label>
+          <app-text-input label="description" appearance="outline" [filled]="true" [control]="productForm.get('description')">
+            <input #epmInput type="text" placeholder="Descripcion" formControlName="description" required />
+          </app-text-input>
+          <small *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="error-message">
+          </small>
         </div>
-        <div class="form-column">
-            <label class="label-left">Logo</label>
-            <app-text-input label="logo" appearance="outline" [filled]="true" [control]="productForm.get('logo')">
-                <input #epmInput type="text" placeholder="logo" formControlName="logo" required/>
-            </app-text-input> 
+        <div class="form-column" [ngClass]="{'invalid': productForm.get('logo')?.invalid && productForm.get('logo')?.touched}">
+          <label class="label-left">Logo</label>
+          <app-text-input label="logo" appearance="outline" [filled]="true" [control]="productForm.get('logo')">
+            <input #epmInput type="text" placeholder="Logo" formControlName="logo" required />
+          </app-text-input>
+          <small *ngIf="productForm.get('logo')?.invalid && productForm.get('logo')?.touched" class="error-message">
+          </small>
         </div>
       </div>
-  
+    
       <!-- Fila 3 -->
       <div class="form-row">
         <div class="form-column">
-            <label class="label-left">Fecha liberación</label>
-            <div class="form-group">
-                <app-date-input
-                style="width: 300px;"
-                #dateInput  
-                type="date" 
-                formControlName="releaseDate" 
-                [edit]="false"
-                [control]="productForm.get('releaseDate')"
-                class="form-control"></app-date-input>
-                     
-              </div>
+          <label class="label-left">Fecha liberación</label>
+          <div class="form-group">
+            <app-date-input
+              style="width: 300px;"
+              #dateInput
+              type="date"
+              formControlName="releaseDate"
+              [edit]="false"
+              [control]="productForm.get('releaseDate')"
+              class="form-control"
+            ></app-date-input>
+            <small *ngIf="productForm.get('releaseDate')?.invalid && productForm.get('releaseDate')?.touched" class="error-message">
+              La fecha es requerida.
+            </small>
+          </div>
         </div>
         <div class="form-column">
-            <label class="label-left">Fecha revision</label>
-            <div class="form-group" style="width: 50%">
-                <app-date-input
-                #dateInput  
-                type="date" 
-                formControlName="checkDate" 
-                [edit]="false"
-                [control]="productForm.get('checkDate')"
-                class="form-control"></app-date-input>
-                     
-              </div>
+          <label class="label-left">Fecha revisión</label>
+          <div class="form-group" style="width: 50%">
+            <app-date-input
+              #dateInput
+              type="date"
+              formControlName="checkDate"
+              [edit]="false"
+              [control]="productForm.get('checkDate')"
+              class="form-control"
+            ></app-date-input>
             
+          </div>
         </div>
       </div>
-  
+    
       <!-- Botones -->
       <div class="form-buttons">
-        <app-primary-button [enabled]="true" color="cancel" type="button" class="mr-1">Cancelar</app-primary-button>
-        
-        <app-primary-button *ngIf="edit" color="primary"  type="submit" [enabled]="true" type="button"  (click)="saveProduct()">Agregar</app-primary-button>
-        <app-primary-button *ngIf="!edit" color="primary"  type="submit" [enabled]="true" type="button"  (click)="updateProduct()">Actualizar</app-primary-button>
+        <app-primary-button [enabled]="true" color="cancel" type="button" class="mr-1" (click)="clearForm()">Cancelar</app-primary-button>
+    
+        <app-primary-button *ngIf="edit" color="primary" type="submit" [enabled]="true" (click)="saveProduct()">Agregar</app-primary-button>
+        <app-primary-button *ngIf="!edit" color="primary" type="submit" [enabled]="true" (click)="updateProduct()">Actualizar</app-primary-button>
       </div>
+      <div class="form-buttons">
+        <app-primary-button *ngIf="!edit" color="delete" type="button" [enabled]="true" (click)="openDialog()">Eliminar</app-primary-button>
+      </div>
+    
+      <app-dialogs
+        [title]="'Confirmación'"
+        [isVisible]="isDialogVisible"
+        (close)="closeDialog()"
+        (confirmAction)="onConfirm()"
+      >
+        <p>¿Está seguro que desea eliminar el producto <strong>{{ productForm.get('name')?.value }}</strong>?</p>
+      </app-dialogs>
     </form>
+    
   </div>
   
   <div class="form-container" *ngIf="loading">

@@ -11,6 +11,8 @@ export class TableComponent {
   @Input() canClickRow: boolean = false;
   @Input() clickFn: (element: any) => void = (element) => null;
 
+  imageSrc: string = '../../../assets/icons/icono_banco.png'; // Ruta de la imagen por defecto
+
   constructor(
     private cd: ChangeDetectorRef,
   ) { }
@@ -33,9 +35,8 @@ export class TableComponent {
       this.clickFn(row);
     }
   }
-
   getKeys(row: { [key: string]: any }): string[] {
-    return Object.keys(row).filter((key) => key !== 'id'); 
+    return Object.keys(row).filter((key) => key !== 'id' && key !== 'imageSrc');  // Aseguramos que 'imageSrc' no se incluya
   }
 
   updateDisplayedData(): void {
@@ -49,5 +50,10 @@ export class TableComponent {
     this.itemsPerPage = parseInt(value, 10);
     this.currentPage = 1; 
     this.updateDisplayedData();
+  }
+  onImageError(event: any, row: any): void {
+    console.log('Error al cargar la imagen:', event);
+    // Actualizamos la propiedad imageSrc de la fila para asignar la imagen por defecto
+    row.imageSrc = '../../../assets/icons/icono_banco.png';  // Asignar imagen por defecto
   }
 }

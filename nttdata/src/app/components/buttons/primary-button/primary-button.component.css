@@ -1,29 +1,41 @@
-
-button{
+button {
   width: max-content;
   display: block;
   border-radius: 5px;
-  border-color: none;
   height: 35px;
   width: 125px;
-  font-family: "prelo-book", sans-serif ;
+  font-family: "prelo-book", sans-serif;
   font-weight: bold;
-  border: none
-  
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
 
+button.primary {
+  background-color: var(--primary-yellow);
+  color: var(--primary-blue);
 }
-button.primary{
-    background-color: var(--primary-yellow);
-    color: var(--primary-blue);
+
+button.primary:hover {
+  background-color: var(--secundary-yellow);
+  color: var(--primary-blue); /* Invertir colores */
 }
-.fc .fc-button-primary:hover,
-.fc .fc-button-primary:not(:disabled).fc-button-active {
+
+button.cancel {
+  background-color: var(--primary-grey);
+  color: var(--primary-blue);
+}
+
+button.cancel:hover {
   background-color: var(--primary-blue);
-  border-color: var(--primary-blue);
+  color: var(--primary-grey); /* Invertir colores */
 }
-  button.cancel{
-    background-color: var(--primary-grey);
-    color: var(--primary-blue);
+
+button.delete {
+  background-color: var(--cancel-color);
+  color: var(--primary-blue);
 }
-  
-  
+
+button.delete:hover {
+  background-color: var(--secondary-cancel-color);
+  color: var(--cancel-color); /* Invertir colores */
+}

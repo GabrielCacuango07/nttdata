@@ -17,7 +17,8 @@ export class ProductService {
   }
 
   saveProduct(data:any){  
-    return this.http.post(`${this.serviceURL}/upd-product`, data);
+    console.log("🚀 ~ ProductService ~ saveProduct ~ data:", data)
+    return this.http.post(`${this.serviceURL}/bp/products`, data);
   }
   checkProduct(id:string){  
     return this.http.get(`${this.serviceURL}/bp/products/verification/${id}`);
@@ -26,5 +27,9 @@ export class ProductService {
     let { id, ...dataWithoutId } = data;
     console.log("🚀 ~ ProductService ~ updateProduct ~ data sin id:", dataWithoutId);
     return this.http.put(`${this.serviceURL}/bp/products/${id}`, dataWithoutId);
+  }
+  deleteProduct(data:any) {
+    let id = data;
+    return this.http.delete(`${this.serviceURL}/bp/products/${id}`);
   }
 }
