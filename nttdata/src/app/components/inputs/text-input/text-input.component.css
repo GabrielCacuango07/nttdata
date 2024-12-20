@@ -1,0 +1,35 @@
+.input-container{
+    margin-bottom: .8rem;
+    position: relative;
+}
+
+label{
+    font-size: 1.2rem;
+    left: 1rem;
+    position: absolute;
+    top: .4rem;
+    z-index: 1;
+    width: calc(100% - 1rem);
+    display: block;
+    padding-right: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.error-label {
+    min-height: 1em; 
+    visibility: hidden; 
+    color: transparent;
+  }
+  
+  .error-label.show-error {
+    visibility: visible; 
+    color: red; 
+  }
+  
+  input.ng-invalid.ng-touched {
+    border: 5px solid red; 
+  }
+  

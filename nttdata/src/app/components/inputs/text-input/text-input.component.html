@@ -1,0 +1,11 @@
+<div>
+    <label *ngIf="label" class="required-field-marker"> 
+        {{ label }}
+    </label>
+    
+    <ng-content></ng-content>
+        <div class="error-label" [ngClass]="{ 'show-error': error.hasError && control.touched }">
+        <small>{{ error.message }}</small>
+    </div>
+  </div>
+  

@@ -1,0 +1,44 @@
+.custom-header {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 60px; 
+  background-color: var(--primary-white); 
+  color: white; 
+  display: flex; 
+  align-items: center;
+  justify-content: center; 
+  z-index: 1000; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  padding: 0 10px; 
+}
+
+.header-content {
+  font-size: 20px; 
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "prelo-book", sans-serif;
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center; 
+}
+
+.icono {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px; 
+}
+
+.home-button {
+  position: absolute;
+  left: 10px; 
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.home-icon {
+  width: 30px;
+  height: 30px;
+}

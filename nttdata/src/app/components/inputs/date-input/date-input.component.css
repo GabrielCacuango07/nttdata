@@ -1,0 +1,39 @@
+.error-label{
+    color: red;
+    margin-left: .4rem;
+    line-height: 1.2rem;
+}
+
+label{
+    font-size: 1.2rem;
+    left: 1rem;
+    position: absolute;
+    top: .4rem;
+    z-index: 1;
+    width: calc(100% - 1rem);
+    display: block;
+    padding-right: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+input[type="date"] {
+    width: 95%; 
+    padding: 10px; 
+    font-size: 14px; 
+    border: 1px solid var(--primary-grey); 
+    border-radius: 8px; 
+    background-color: var(--primary-white); 
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease; 
+  }
+  
+  input[type="date"]:focus {
+    border-color: var(--primary-blue); 
+    outline: none;
+  }
+
+  input[type="date"]:hover {
+    background-color: #f9f9f9;
+  }

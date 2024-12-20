@@ -1,0 +1,38 @@
+<div class="table-container">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">
+          <span class="header-title">{{ header.title }}</span>
+          <div class="tooltip-container" *ngIf="header.icon">
+            <img [src]="header.icon" alt="Ícono" class="header-icon" />
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of displayedData" (click)="handleRowClick(row)">
+        <td *ngFor="let key of getKeys(row)">
+          <ng-container *ngIf="key === 'logo'; else text">
+            <img [src]="'../../../assets/icons/' + row[key]"  
+                 alt="Logo" 
+                 #logo
+                 class="log-image" 
+                 (error)="onImageError($event, logo)" 
+                 /> 
+          </ng-container>
+          
+          <ng-template #text>
+            {{ row[key] }}
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination-controls">
+  <select id="itemsPerPage" (change)="onItemsPerPageChange($event)">
+    <option *ngFor="let option of [20, 10, 5]" [value]="option">{{ option }}</option>
+  </select>
+</div>
