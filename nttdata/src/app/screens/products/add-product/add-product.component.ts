@@ -50,14 +50,13 @@ export class AddProductComponent {
         next: (response: any) => {
           console.log("Datos recibidos del producto:", response);
           if (response) {
-           
             this.productForm.patchValue({
-              id: this.element.id || 'Valor predeterminado',
-              name: this.element.name || 'Valor predeterminado',
-              description: this.element.description || 'Valor predeterminado',
-              logo: this.element.logo || 'Valor predeterminado',
-              releaseDate: this.element.releaseDate || '2025-01-01',
-              checkDate: this.element.checkDate || '2025-01-01',
+              id: this.element.id ,
+              name: this.element.name ,
+              description: this.element.description ,
+              logo: this.element.logo ,
+              releaseDate: this.element.releaseDate ,
+              checkDate: this.element.checkDate ,
             });
           } else {
             this.notificacionService.showNotification('No existe el producto');
@@ -132,7 +131,16 @@ export class AddProductComponent {
     });
   }
   updateProduct(){
+    console.log(this.productForm.value,"this.productForm.value")
     let data = this.prepareData(this.productForm.value);
+    this.loading = true;
+    if (!this.productForm.valid) {
+      this.markAllAsTouched();
+      this.notificacionService.showNotification('Producto no válido. Revise los campos.');
+      this.loading = false;
+      return;
+    }
+    console.log("🚀 ~ AddProductComponent ~ updateProduct ~ data:", data)
     this.productService.updateProduct(data).subscribe({
       next: (response: any) => {
         console.log("🚀 ~ AddProductComponent ~ this.productService.updateProduct ~ response:", response.message)
@@ -177,7 +185,7 @@ export class AddProductComponent {
   
   onConfirm() {
     console.log("Acción confirmada");
-    let data  = this.productForm.value.id
+    let data  = this.productForm.get('id')?.value;
     console.log("🚀 ~ AddProductComponent ~ onConfirm ~ data:", data)
     this.productService.deleteProduct(data).subscribe({
       next: (response: any) => {
@@ -206,12 +214,14 @@ export class AddProductComponent {
     });
   }
   prepareData(data:any){
+    console.log("🚀 ~ AddProductComponent ~ prepareData ~ data:", data)
+    console.log("🚀 ~ AddProductComponent ~ prepareData ~ this.productForm.get('id')?.value:", this.productForm.get('id')?.value)
     const newCheckDate = new Date(data.releaseDate);
         newCheckDate.setFullYear(newCheckDate.getFullYear() + 1);       
         const isoDateString = newCheckDate.toISOString().split('T')[0]; 
         this.productForm.get('checkDate')?.setValue(isoDateString);
     let dataUpdate = {
-      id:data.id,
+      id:this.productForm.get('id')?.value,
       name: data.name,
       description: data.description,
       logo: data.logo,

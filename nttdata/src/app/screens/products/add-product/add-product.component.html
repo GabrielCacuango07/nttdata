@@ -9,7 +9,7 @@
         <div class="form-column" [ngClass]="{'invalid': productForm.get('id')?.invalid && productForm.get('id')?.touched}">
           <label class="label-left">Id</label>
           <app-text-input [edit]="!edit" label="Id" appearance="outline" [filled]="true" [control]="productForm.get('id')">
-            <input #epmInput type="text" placeholder="Ingrese un id" formControlName="id" required />
+            <input #epmInput type="text" placeholder="Ingrese un id" formControlName="id" required [attr.disabled]="productForm.get('id')?.disabled ? true : null"/>
           </app-text-input>
           <small *ngIf="productForm.get('id')?.invalid && productForm.get('id')?.touched" class="error-message">
           </small>
