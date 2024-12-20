@@ -17,7 +17,6 @@ export class DialogsComponent {
   }
 
   confirm() {
-    console.log('Botón "Sí" presionado en el diálogo');
   this.confirmAction.emit();
   }
 }

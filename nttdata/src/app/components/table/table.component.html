@@ -16,9 +16,10 @@
           <ng-container *ngIf="key === 'logo'; else text">
             <img [src]="'../../../assets/icons/' + row[key]"  
                  alt="Logo" 
+                 #logo
                  class="log-image" 
-                 (error)="onImageError($event, row)" 
-                 [attr.src]="row['imageSrc'] || '../../../assets/icons/icono_banco.png'" /> <!-- Imagen por defecto -->
+                 (error)="onImageError($event, logo)" 
+                 /> 
           </ng-container>
           
           <ng-template #text>

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { parseError } from 'src/app/utils/forms-validators.utils';
 
@@ -7,7 +7,7 @@ import { parseError } from 'src/app/utils/forms-validators.utils';
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.css']
 })
-export class TextInputComponent {
+export class TextInputComponent implements OnChanges,AfterContentInit {
   
   @Input() filled: boolean = false;
   @Input() label: string = '';

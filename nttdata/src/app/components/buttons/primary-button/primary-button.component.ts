@@ -13,12 +13,11 @@ export class PrimaryButtonComponent {
   @Input() type: string = 'button'; 
   
   
-  constructor(private router: Router) {
+  constructor(public router: Router) {
     
   }  
 
   onClick() {
-    console.log("navegaaa")
     if (this.navigateTo && this.enabled) {
       this.router.navigate(this.navigateTo);  
     }

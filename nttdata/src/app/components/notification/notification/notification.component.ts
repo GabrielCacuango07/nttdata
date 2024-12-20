@@ -13,7 +13,7 @@ import { NotificacionService } from '../../../services/notification.service';
 export class NotificationComponent implements OnInit {
   message: string | null = null;
 
-  constructor(private notificacionService: NotificacionService) {}
+  constructor(public notificacionService: NotificacionService) {}
 
   ngOnInit() {
     this.notificacionService.notifications$.subscribe((message: string | null) => {

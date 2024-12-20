@@ -12,10 +12,12 @@ describe('TextInputComponent', () => {
     });
     fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.nativeElement.appendChild(document.createElement('input'));
+    fixture.detectChanges(); 
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

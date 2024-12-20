@@ -23,19 +23,12 @@ export class AppComponent {
   ];
 
   constructor(
-    private router: Router,
+    public router: Router,
   ) {
   }
 
   addItem() {
-    console.log("presionado");  
     this.router.navigate(['/new-product']);  
-  }
-
-
-  handleSearch(term: string): void {
-    console.log('Término de búsqueda:', term);
-    
   }
  
 }

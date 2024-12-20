@@ -1,9 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { NotificationComponent } from './components/notification/notification/notification.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    declarations: [AppComponent,FooterComponent,HeaderComponent,NotificationComponent],
+    imports:[RouterTestingModule]
   }));
 
   it('should create the app', () => {
@@ -17,11 +22,12 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('nttdata');
   });
-
-  it('should render title', () => {
+  it('should add item', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('nttdata app is running!');
+    const component = fixture.componentInstance;
+    let routeSpy = jest.spyOn(component.router,'navigate')
+    component.addItem()
+    expect(routeSpy).toHaveBeenCalledWith(['/new-product']);
   });
+
 });

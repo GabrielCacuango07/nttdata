@@ -18,4 +18,14 @@ describe('DialogsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should onClose', () => {
+    let onClose = jest.spyOn(component.close,"emit")
+    component.onClose()
+    expect(onClose).toHaveBeenCalled();
+  });
+  it('should confirm', () => {
+    let onConfirm = jest.spyOn(component.confirmAction,"emit")
+    component.confirm()
+    expect(onConfirm).toHaveBeenCalled();
+  });
 });
